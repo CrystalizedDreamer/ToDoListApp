@@ -3,8 +3,10 @@ def main():
     task_manager = Task_Manager()
     import os
     print("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n")
+    print("TASK MANAGING SYSTEM ACTIVE")
+    print("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n")
     print("Welcome to your personal task manager...")
-    print("Before we begin, what is your name?")
+    print("Before we begin, what is your name?\n")
     name = input("Enter your name: ")
     os.system('cls')
     print("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n")
@@ -21,7 +23,7 @@ def main():
         choice = input("\nEnter your choice (1-4): ")
 
         if choice == "1":
-            task = input("Enter the task to add: ")
+            task = input("\nEnter the task to add: ")
             task_manager.add_task(task)
             os.system('cls')
             print("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n")
@@ -39,15 +41,27 @@ def main():
                 print("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n")
                 print("No tasks available.")
         elif choice == "3":
-            task_id = int(input("Enter the task ID to delete: ")) - 1
-            if task_manager.delete_task(task_id):
+            tasks = task_manager.view_tasks()
+            if not tasks:
                 os.system('cls')
                 print("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n")
-                print(f"Task {task_id + 1} deleted.")
+                print("Mama... you have no tasks left to delete, please add some first.")
             else:
-                os.system('cls')
-                print("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n")
-                print("Bestie... that is NOT a valid task ID, wanna try that again?.")
+                try:
+                    task_id = int(input("Enter the task ID to delete: ")) - 1
+                    if task_manager.delete_task(task_id):
+                        os.system('cls')
+                        print("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n")
+                        print(f"Task {task_id + 1} deleted.")
+                    else:
+                        os.system('cls')
+                        print("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n")
+                        print("Bestie... that is NOT a valid task ID, wanna try that again?.")
+                except ValueError:
+                    os.system('cls')
+                    print("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n")
+                    print("Was that a number? I don't think so. Please enter a valid task ID.")
+
         elif choice == "4":
             os.system('cls')
             print("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n")
