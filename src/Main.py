@@ -14,15 +14,28 @@ def main():
         choice = input("Enter your choice (1-4): ")
 
         if choice == "1":
-            print("Adding a task...")
+            task = input("Enter the task to add: ")
+            task_manager.add_task(task)
+            print(f'Task "{task}" added.')
         elif choice == "2":
-            print("Viewing tasks...")
+            tasks = task_manager.view_tasks()
+            if tasks:
+                print("Current tasks:")
+                for i, task in enumerate(tasks):
+                    print(f"{i + 1}. {task}")
+            else:
+                print("No tasks available.")
         elif choice == "3":
-            print("Deleting a task...")
+            task_id = int(input("Enter the task ID to delete: ")) - 1
+            if task_manager.delete_task(task_id):
+                print(f"Task {task_id + 1} deleted.")
+            else:
+                print("Invalid task ID.")
         elif choice == "4":
             print("Exiting...")
             break
         else:
             print("Invalid choice. Please try again.")
+
 
 main()
