@@ -1,11 +1,14 @@
 def main():
     from tasks import Task_Manager
     task_manager = Task_Manager()
+    print("Welcome to your personal task manager...")
+    print("Before we begin, what is your name?")
+    name = input("Enter your name: ")
+    print(f"Hello, {name}! Let's proceed")
+    
     while True:
-        print("Welcome to your personal task manager...")
-        print("Before we begin, what is your name?")
-        name = input("Enter your name: ")
-        print(f"Hello, {name}! Please select an action...")
+
+        print(f"{name} Please select an action...")
         print("1. Add a task")
         print("2. View tasks")
         print("3. Delete a task")
@@ -32,7 +35,7 @@ def main():
             else:
                 print("Invalid task ID.")
         elif choice == "4":
-            print("Exiting...")
+            print(f"Goodbye, {name}! Session Terminating.")
             break
         else:
             print("Invalid choice. Please try again.")
