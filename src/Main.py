@@ -8,13 +8,13 @@ def main():
     
     while True:
 
-        print(f"{name} Please select an action...")
+        print(f"\n{name} Please select an action...\n")
         print("1. Add a task")
         print("2. View tasks")
         print("3. Delete a task")
         print("4. Exit")
-        
-        choice = input("Enter your choice (1-4): ")
+
+        choice = input("\nEnter your choice (1-4): ")
 
         if choice == "1":
             task = input("Enter the task to add: ")
